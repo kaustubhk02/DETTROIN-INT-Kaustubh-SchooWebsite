@@ -1,6 +1,11 @@
 import { GraduationCap, MapPin, Phone, Mail, Clock } from "lucide-react";
 
-export default function Footer({ onOpenInquiry }) {
+export default function Footer({ onOpenInquiry, onNavigate }) {
+  const handleLink = (page) => {
+    if (onNavigate) onNavigate(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,14 +31,15 @@ export default function Footer({ onOpenInquiry }) {
           {/* Quick Links */}
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">
-              Quick Navigation
+              Quick Navigation Pages
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
-              <li><a href="#about" className="hover:text-amber-400 transition-colors">About Our Campus</a></li>
-              <li><a href="#admissions" className="hover:text-amber-400 transition-colors">Admission Process & Fees</a></li>
-              <li><a href="#academics" className="hover:text-amber-400 transition-colors">CBSE Curriculum</a></li>
-              <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
-              <li><a href="#faq" className="hover:text-amber-400 transition-colors">Parent FAQs</a></li>
+              <li><button onClick={() => handleLink("home")} className="hover:text-amber-400 transition-colors cursor-pointer">Home Overview</button></li>
+              <li><button onClick={() => handleLink("about")} className="hover:text-amber-400 transition-colors cursor-pointer">About Our Campus</button></li>
+              <li><button onClick={() => handleLink("admissions")} className="hover:text-amber-400 transition-colors cursor-pointer">Admission Process & Fees</button></li>
+              <li><button onClick={() => handleLink("academics")} className="hover:text-amber-400 transition-colors cursor-pointer">CBSE Curriculum</button></li>
+              <li><button onClick={() => handleLink("gallery")} className="hover:text-amber-400 transition-colors cursor-pointer">Photo Gallery</button></li>
+              <li><button onClick={() => handleLink("contact")} className="hover:text-amber-400 transition-colors cursor-pointer">Parent FAQs & Contact</button></li>
             </ul>
           </div>
 

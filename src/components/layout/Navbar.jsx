@@ -13,42 +13,49 @@ import {
 
 const NAV_ITEMS = [
   {
+    label: "Home",
+    page: "home",
+  },
+  {
     label: "About Us",
+    page: "about",
     links: [
-      { label: "Overview & Vision", href: "#about" },
-      { label: "Our 5-Acre Campus", href: "#campus" },
-      { label: "Principal's Message", href: "#about" },
-      { label: "Awards & Recognition", href: "#why-us" },
+      { label: "Overview & Vision", page: "about" },
+      { label: "Our 5-Acre Campus", page: "about" },
+      { label: "Why Krishna International?", page: "about" },
     ],
   },
   {
     label: "Admissions",
+    page: "admissions",
     links: [
-      { label: "4-Step Admission Guide", href: "#admissions" },
-      { label: "Fee Structure & Eligibility", href: "#admissions" },
-      { label: "Online Application Form", href: "#inquire" },
+      { label: "4-Step Admission Guide", page: "admissions" },
+      { label: "Required Documents", page: "admissions" },
+      { label: "Fee Payment & Eligibility", page: "admissions" },
     ],
   },
   {
     label: "Academics",
+    page: "academics",
     links: [
-      { label: "CBSE Curriculum", href: "#academics" },
-      { label: "Smart Classrooms", href: "#academics" },
-      { label: "Science & Computer Labs", href: "#academics" },
+      { label: "CBSE Curriculum", page: "academics" },
+      { label: "Academic Wings", page: "academics" },
+      { label: "GREAT Citizen Motto", page: "academics" },
     ],
   },
   {
     label: "Campus Life",
+    page: "gallery",
     links: [
-      { label: "Sports & Athletics", href: "#facilities" },
-      { label: "Arts & Culture", href: "#facilities" },
-      { label: "School Gallery", href: "#gallery" },
+      { label: "Sports & Athletics", page: "gallery" },
+      { label: "Smart Classrooms", page: "gallery" },
+      { label: "Photo Gallery", page: "gallery" },
     ],
   },
-  { label: "Parent FAQ", href: "#faq" },
+  { label: "Parent FAQ / Contact", page: "contact" },
 ];
 
-export default function Navbar({ onOpenInquiry }) {
+export default function Navbar({ onOpenInquiry, currentPage, onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [activeAccordion, setActiveAccordion] = useState(null);
@@ -70,12 +77,18 @@ export default function Navbar({ onOpenInquiry }) {
     }
   }, [mobileOpen]);
 
+  const handleNavClick = (page) => {
+    if (onNavigate) onNavigate(page);
+    setMobileOpen(false);
+    setOpenDropdown(null);
+  };
+
   return (
     <>
       {/* Top Announcement & Quick Contact Bar */}
       <div className="bg-slate-900 text-slate-200 text-xs py-2 px-4 sm:px-8 border-b border-slate-800">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-          {/* Contact Information */}
+          {/* Contact Details */}
           <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
             <a
               href="tel:+919876543210"
@@ -117,7 +130,10 @@ export default function Navbar({ onOpenInquiry }) {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5">
           {/* Logo & School Name */}
-          <a href="#" className="flex items-center gap-3 group focus:outline-hidden">
+          <button
+            onClick={() => handleNavClick("home")}
+            className="flex items-center gap-3 group text-left cursor-pointer focus:outline-hidden"
+          >
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center shadow-md shadow-blue-700/20 group-hover:bg-blue-800 transition-colors">
               <GraduationCap size={24} />
             </div>
@@ -129,57 +145,58 @@ export default function Navbar({ onOpenInquiry }) {
                 CBSE Affiliated School • Aligarh
               </span>
             </div>
-          </a>
+          </button>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => item.links && setOpenDropdown(item.label)}
-                onMouseLeave={() => item.links && setOpenDropdown(null)}
-              >
-                {item.links ? (
+            {NAV_ITEMS.map((item) => {
+              const isActive = currentPage === item.page;
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => item.links && setOpenDropdown(item.label)}
+                  onMouseLeave={() => item.links && setOpenDropdown(null)}
+                >
                   <button
                     type="button"
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-slate-700 rounded-lg hover:text-blue-700 hover:bg-slate-100/80 transition-colors cursor-pointer"
+                    onClick={() => handleNavClick(item.page)}
+                    className={`flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
+                      isActive
+                        ? "text-blue-700 bg-blue-50"
+                        : "text-slate-700 hover:text-blue-700 hover:bg-slate-100/80"
+                    }`}
                   >
                     {item.label}
-                    <ChevronDown
-                      size={15}
-                      className={`text-slate-400 transition-transform duration-200 ${
-                        openDropdown === item.label ? "rotate-180 text-blue-700" : ""
-                      }`}
-                    />
+                    {item.links && (
+                      <ChevronDown
+                        size={15}
+                        className={`text-slate-400 transition-transform duration-200 ${
+                          openDropdown === item.label ? "rotate-180 text-blue-700" : ""
+                        }`}
+                      />
+                    )}
                   </button>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="block px-3 py-2 text-sm font-semibold text-slate-700 rounded-lg hover:text-blue-700 hover:bg-slate-100/80 transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                )}
 
-                {/* Dropdown Menu */}
-                {item.links && openDropdown === item.label && (
-                  <div className="absolute left-0 top-full pt-1.5 w-60 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="bg-white rounded-xl shadow-xl border border-slate-200 p-2 space-y-1">
-                      {item.links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          className="block px-3.5 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
+                  {/* Dropdown Menu */}
+                  {item.links && openDropdown === item.label && (
+                    <div className="absolute left-0 top-full pt-1.5 w-60 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                      <div className="bg-white rounded-xl shadow-xl border border-slate-200 p-2 space-y-1">
+                        {item.links.map((link) => (
+                          <button
+                            key={link.label}
+                            onClick={() => handleNavClick(link.page)}
+                            className="w-full text-left block px-3.5 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors cursor-pointer"
+                          >
+                            {link.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* CTA Buttons (Desktop) */}
@@ -267,26 +284,24 @@ export default function Navbar({ onOpenInquiry }) {
                       {activeAccordion === idx && (
                         <div className="pl-4 pb-2 pt-1 flex flex-col gap-2">
                           {item.links.map((link) => (
-                            <a
+                            <button
                               key={link.label}
-                              href={link.href}
-                              onClick={() => setMobileOpen(false)}
-                              className="text-sm font-medium text-slate-600 hover:text-blue-700 py-1"
+                              onClick={() => handleNavClick(link.page)}
+                              className="text-left text-sm font-medium text-slate-600 hover:text-blue-700 py-1"
                             >
                               {link.label}
-                            </a>
+                            </button>
                           ))}
                         </div>
                       )}
                     </div>
                   ) : (
-                    <a
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block py-2.5 text-base font-semibold text-slate-800 hover:text-blue-700"
+                    <button
+                      onClick={() => handleNavClick(item.page)}
+                      className="w-full text-left block py-2.5 text-base font-semibold text-slate-800 hover:text-blue-700"
                     >
                       {item.label}
-                    </a>
+                    </button>
                   )}
                 </div>
               ))}

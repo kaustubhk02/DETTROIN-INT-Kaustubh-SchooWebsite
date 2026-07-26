@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import Navbar from './components/layout/Navbar';
-import Hero from './components/sections/Hero';
-import StatsBar from './components/sections/StatsBar';
-import WhyChooseUs from './components/sections/WhyChooseUs';
-import Academics from './components/sections/Academics';
-import Admissions from './components/sections/Admissions';
-import Gallery from './components/sections/Gallery';
-import Faq from './components/sections/Faq';
+import Footer from './components/layout/Footer';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import AdmissionsPage from './pages/AdmissionsPage';
+import AcademicsPage from './pages/AcademicsPage';
+import GalleryPage from './pages/GalleryPage';
+import ContactPage from './pages/ContactPage';
 import InquiryModal from './components/ui/InquiryModal';
 import './App.css';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState('home');
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+
+  const handleNavigate = (pageKey) => {
+    setCurrentPage(pageKey);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenInquiry = () => {
     setInquiryModalOpen(true);
@@ -21,18 +27,35 @@ export default function App() {
     setInquiryModalOpen(false);
   };
 
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'about':
+        return <AboutPage onOpenInquiry={handleOpenInquiry} />;
+      case 'admissions':
+        return <AdmissionsPage onOpenInquiry={handleOpenInquiry} />;
+      case 'academics':
+        return <AcademicsPage />;
+      case 'gallery':
+        return <GalleryPage />;
+      case 'contact':
+        return <ContactPage onOpenInquiry={handleOpenInquiry} />;
+      case 'home':
+      default:
+        return <HomePage onOpenInquiry={handleOpenInquiry} onNavigate={handleNavigate} />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFDF9] text-slate-800 flex flex-col font-sans">
-      <Navbar onOpenInquiry={handleOpenInquiry} />
+      <Navbar
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        onOpenInquiry={handleOpenInquiry}
+      />
       <main className="flex-1">
-        <Hero onOpenInquiry={handleOpenInquiry} />
-        <StatsBar />
-        <WhyChooseUs />
-        <Academics />
-        <Admissions onOpenInquiry={handleOpenInquiry} />
-        <Gallery />
-        <Faq />
+        {renderPage()}
       </main>
+      <Footer onNavigate={handleNavigate} onOpenInquiry={handleOpenInquiry} />
       <InquiryModal isOpen={inquiryModalOpen} onClose={handleCloseInquiry} />
     </div>
   );
