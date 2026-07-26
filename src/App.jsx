@@ -1,5 +1,7 @@
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
+import StatsBar from './components/sections/StatsBar';
+import WhyChooseUs from './components/sections/WhyChooseUs';
 import './App.css';
 
 export default function App() {
@@ -12,6 +14,8 @@ export default function App() {
       <Navbar onOpenInquiry={handleOpenInquiry} />
       <main className="flex-1">
         <Hero onOpenInquiry={handleOpenInquiry} />
+        <StatsBar />
+        <WhyChooseUs />
       </main>
     </div>
   );
