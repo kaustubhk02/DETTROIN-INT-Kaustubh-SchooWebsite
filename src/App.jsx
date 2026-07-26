@@ -3,6 +3,7 @@ import Hero from './components/sections/Hero';
 import StatsBar from './components/sections/StatsBar';
 import WhyChooseUs from './components/sections/WhyChooseUs';
 import Academics from './components/sections/Academics';
+import Admissions from './components/sections/Admissions';
 import './App.css';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <StatsBar />
         <WhyChooseUs />
         <Academics />
+        <Admissions onOpenInquiry={handleOpenInquiry} />
       </main>
     </div>
   );
