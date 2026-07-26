@@ -4,6 +4,7 @@ import StatsBar from './components/sections/StatsBar';
 import WhyChooseUs from './components/sections/WhyChooseUs';
 import Academics from './components/sections/Academics';
 import Admissions from './components/sections/Admissions';
+import Gallery from './components/sections/Gallery';
 import './App.css';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <WhyChooseUs />
         <Academics />
         <Admissions onOpenInquiry={handleOpenInquiry} />
+        <Gallery />
       </main>
     </div>
   );
