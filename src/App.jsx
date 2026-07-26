@@ -2,6 +2,7 @@ import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import StatsBar from './components/sections/StatsBar';
 import WhyChooseUs from './components/sections/WhyChooseUs';
+import Academics from './components/sections/Academics';
 import './App.css';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Hero onOpenInquiry={handleOpenInquiry} />
         <StatsBar />
         <WhyChooseUs />
+        <Academics />
       </main>
     </div>
   );
