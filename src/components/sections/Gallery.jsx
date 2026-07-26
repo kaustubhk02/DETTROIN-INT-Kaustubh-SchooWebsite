@@ -23,32 +23,32 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-16 sm:py-24 bg-white">
+    <section id="gallery" className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200">
               Campus Highlights
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
               A Glimpse into Life at Krishna International
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 max-w-md">
+          <p className="text-xs sm:text-sm text-slate-500 max-w-md leading-relaxed">
             Designed with wide open spaces, natural lighting, and modern facilities to give students room to study, play, and thrive.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {GALLERY_ITEMS.map((item, idx) => (
             <div
               key={idx}
-              className="group relative rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300"
+              className="h-72 sm:h-80 group relative rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 hover:shadow-lg transition-all duration-300"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent p-5 flex flex-col justify-end">
                 <span className="text-white font-bold text-base leading-tight">

@@ -45,25 +45,25 @@ export default function Faq() {
   return (
     <>
       {/* Parent Reviews & Testimonials */}
-      <section className="py-16 sm:py-20 bg-blue-50/60 border-y border-slate-200/60">
+      <section className="py-20 sm:py-24 bg-blue-50/60 border-y border-slate-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-white px-3.5 py-1 rounded-full border border-blue-200">
               Parent Feedback
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
               Trusted by Hundreds of Families
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
             {TESTIMONIALS.map((t, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between"
+                className="h-full flex flex-col justify-between bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm"
               >
                 <div>
-                  <div className="flex items-center gap-1 text-amber-400 mb-3">
+                  <div className="flex items-center gap-1 text-amber-400 mb-4">
                     {[...Array(t.stars)].map((_, i) => (
                       <Star key={i} size={18} fill="currentColor" />
                     ))}
@@ -72,12 +72,12 @@ export default function Faq() {
                     "{t.quote}"
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div>
                     <div className="font-bold text-slate-900 text-sm sm:text-base">
                       {t.name}
                     </div>
-                    <div className="text-xs text-slate-500 font-medium">
+                    <div className="text-xs text-slate-500 font-medium mt-0.5">
                       {t.role}
                     </div>
                   </div>
@@ -90,32 +90,32 @@ export default function Faq() {
       </section>
 
       {/* Parent FAQ Accordion Section */}
-      <section id="faq" className="py-16 sm:py-24 bg-[#FFFDF9]">
+      <section id="faq" className="py-20 sm:py-28 bg-[#FFFDF9]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100/80 px-3.5 py-1 rounded-full">
               Frequently Asked Questions
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-4">
               Answers for Prospective Parents
             </h2>
-            <p className="mt-2 text-slate-600 text-sm">
+            <p className="mt-2 text-slate-600 text-sm leading-relaxed">
               Click any question below to see clear, straightforward answers about our school.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {FAQS.map((faq, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs transition-colors"
+                className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs transition-colors"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                  className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:bg-slate-50 cursor-pointer"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:bg-slate-50 cursor-pointer"
                 >
-                  <span className="flex items-center gap-2.5">
-                    <HelpCircle size={18} className="text-blue-700 shrink-0" />
+                  <span className="flex items-center gap-3">
+                    <HelpCircle size={19} className="text-blue-700 shrink-0" />
                     {faq.q}
                   </span>
                   <ChevronDown
@@ -126,7 +126,7 @@ export default function Faq() {
                   />
                 </button>
                 {activeFaq === idx && (
-                  <div className="px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                  <div className="px-6 pb-6 pt-2 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 bg-slate-50/50">
                     {faq.a}
                   </div>
                 )}
