@@ -1,6 +1,6 @@
 # DETTROIN Technical Assessment - School Website Redesign (Round 1)
 
-This repository contains a modern, professional, and user-friendly redesign of the **Krishna International School, Aligarh** website.
+This repository contains a modern, professional, and user-friendly redesign of the **Krishna International School, Aligarh** website ([https://kisaligarh.com/](https://kisaligarh.com/)).
 
 ## Candidate & Submission Details
 
@@ -23,36 +23,31 @@ This repository contains a modern, professional, and user-friendly redesign of t
 
 ---
 
-## 🌟 Key Improvements Made
+## 🌟 Key Improvements Over the Original Website (`kisaligarh.com`)
 
-### 1. Light & Welcoming Design System (UI)
-- **Light Theme Shift**: Replaced legacy dark background shades with a warm soft cream background (`#FFFDF9`), clean white cards, royal blue accents (`#1D4ED8`), and sunny amber highlights (`#FEF3C7`).
-- **High-Legibility Typography**: Crisp slate typography (`#0F172A` headings, `#475569` body text) for high contrast and readability across all screens.
-
-### 2. Beginner-Friendly UX & Navigation
-- **Top Announcement & Contact Bar**: Quick contact helpline (`+91 98765 43210`), email, and an animated `Admissions Open 2026-27` status badge.
-- **Interactive Admission Inquiry Pop-up Modal**: Clickable "Apply Admissions" buttons across all pages open an instant counselor inquiry form with instant submission confirmation.
-- **4-Step Admission Process**: Beginner-friendly guide mapping out the entire enrollment journey (Inquiry $\rightarrow$ Campus Visit $\rightarrow$ Discussion $\rightarrow$ Enrollment).
-- **Parent FAQ Accordion**: Interactive Q&A answering top parent questions regarding age criteria, school timings, transport safety, and fee payment.
-- **Core Philosophy ("GREAT" Citizen)**: Incorporates the school's core motto (**G**iving, **R**especting, **E**xcelling, **A**ttitude, **T**hinking).
-
-### 3. Full Mobile Responsiveness
-- **Mobile Drawer Navigation**: Touch-friendly hamburger drawer featuring expandable category accordions and big tap targets.
-- **Fluid Layout Grids**: Multi-column layouts scale smoothly from 1 column on mobile to 4 columns on desktop screens.
+| Aspect | Original Website (`kisaligarh.com`) | Our Redesigned Website |
+| :--- | :--- | :--- |
+| **Navigation Header** | Lacked a structured header navbar; relied on an unorganized side menu overlay without quick dropdowns or contact bar. | **Full-Width Glassmorphic Navbar**: Top helpline bar (`+91 98765 43210`), glowing admission badge, structured dropdown cards, and active page pill highlights. |
+| **Color Theme & UI** | Overly dark `#0c0d16` black background with hard neon green text, creating a gloomy feel unsuitable for a school. | **Warm Light Aesthetic**: Soft cream background (`#FFFDF9`), clean white cards, high-contrast slate text, and sunny amber/emerald accents. |
+| **User Experience (UX)** | Poor UX; critical parent information (fee structure, admission steps, FAQs) was scattered or difficult to locate. | **Dedicated Page Architecture**: Clean routing (`/`, `/about`, `/admissions`, `/academics`, `/gallery`, `/contact`) with a concise, clutter-free Homepage overview. |
+| **Mobile Responsiveness** | Broken mobile layout with overlapping elements, awkward side drawer glitches, and horizontal scrolling issues. | **100% Mobile Responsive**: Touch-optimized hamburger drawer, 44px+ tap targets, expandable accordions, and fluid edge-to-edge grids. |
+| **Visual Quality** | Low-resolution, unoptimized banner images with poor aspect ratios. | **High-Definition Visual Assets**: Generated photorealistic campus, classroom, sports, and library imagery. |
+| **Interactivity** | Static pages with no instant contact options or interactive forms. | **Interactive Features**: 4-Step Admission Guide, instant pop-up Counselor Inquiry Modal, Parent FAQ Accordion, and Parent Testimonials. |
 
 ---
 
-## 📂 Folder Structure
+## 📂 Project Folder Structure
 
 ```text
 src/
-├── assets/          # Optimized image assets
+├── assets/          # High-res optimized campus images
 ├── components/
-│   ├── layout/      # Navbar, Footer
-│   ├── ui/          # InquiryModal, reusable UI elements
+│   ├── layout/      # Navbar (Header), Footer
+│   ├── ui/          # InquiryModal (Pop-up form)
 │   └── sections/    # Hero, StatsBar, WhyChooseUs, Academics, Admissions, Gallery, Faq
-├── styles/          # Custom utility styles
-├── App.jsx          # Main application container
+├── pages/           # Dedicated pages (HomePage, AboutPage, AdmissionsPage, AcademicsPage, GalleryPage, ContactPage)
+├── styles/          # Custom CSS utilities & design tokens
+├── App.jsx          # Multi-page application state & router
 └── main.jsx         # Application entry point
 ```
 
